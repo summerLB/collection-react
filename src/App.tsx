@@ -14,7 +14,7 @@ function getItem(
 	key?: React.Key | null,
 	icon?: React.ReactNode,
 	children?: MenuItem[],
-	type?: 'group'
+	type?: 'group',
 ): MenuItem {
 	return {
 		key,
@@ -36,17 +36,13 @@ const items = allRoutes.map((router) => {
 			getItem(
 				subRouter.meta?.title,
 				resolve(router.path, subRouter.path),
-				subRouter.meta?.Icon ? createElement(subRouter.meta?.Icon as FC) : null
-			)
-		)
+				subRouter.meta?.Icon ? createElement(subRouter.meta?.Icon as FC) : null,
+			),
+		),
 	);
 });
 
-type TRenderRoutes = (
-	routes: IRouter[],
-	parentPath?: string,
-	breadcrumbs?: string[]
-) => React.ReactNode[];
+type TRenderRoutes = (routes: IRouter[], parentPath?: string, breadcrumbs?: string[]) => React.ReactNode[];
 
 const App: FC = () => {
 	const navigate = useNavigate();
@@ -67,9 +63,7 @@ const App: FC = () => {
 
 			if (redirect) {
 				// 重定向
-				return (
-					<Route key={index} path={currentPath} element={<Navigate to={redirect} replace />} />
-				);
+				return <Route key={index} path={currentPath} element={<Navigate to={redirect} replace />} />;
 			}
 
 			if (Component) {
@@ -100,16 +94,16 @@ const App: FC = () => {
 		<Layout hasSider>
 			<Sider style={siderStyle}>
 				<Menu
-					theme="dark"
-					mode="inline"
+					theme='dark'
+					mode='inline'
 					defaultSelectedKeys={[]}
 					selectedKeys={[activeMenuItem]}
 					items={items}
 					onClick={menuClick}
 				/>
 			</Sider>
-			<Layout className="site-layout">
-				<Content className="site-content">
+			<Layout className='site-layout'>
+				<Content className='site-content'>
 					<Suspense fallback={<div>loading</div>}>
 						<Routes>{renderRoutes(allRoutes)}</Routes>
 					</Suspense>

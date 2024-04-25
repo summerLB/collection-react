@@ -65,6 +65,22 @@ const allRoutes: IRouter[] = [
 		},
 	},
 	{
+		path: '/study',
+		meta: {
+			title: '学习demo',
+			Icon: UserOutlined,
+		},
+		children: [
+			{
+				path: 'demo1',
+				Component: lazy(() => import('../pages/study/demo1')),
+				meta: {
+					title: 'Demo1',
+				},
+			},
+		],
+	},
+	{
 		path: '/other',
 		Component: lazy(() => import('../pages/other')),
 		meta: {
