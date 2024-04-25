@@ -7,7 +7,7 @@ const Home: FC = () => {
 			<div
 				style={{
 					position: 'absolute',
-					bottom: 0,
+					bottom: 100,
 					width: '100%',
 					height: '100px',
 					backgroundColor: 'green',
